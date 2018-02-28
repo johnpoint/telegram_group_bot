@@ -1,4 +1,0 @@
-#auto-kick(yes/no)
-no
-#blacklist
-|	time	|	id	|	reason	|
