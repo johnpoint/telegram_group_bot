@@ -54,3 +54,41 @@ elif cat /proc/version | grep -Eqi "centos|red hat|redhat"; then
     echo -e "${Error}无法识别~"
     exit 0
 fi
+
+menu(){
+echo -e "  telegram group bot ${Red_font_prefix}[v${sh_ver}]${Font_color_suffix}
+  ---- johnpoint ----
+  ${Green_font_prefix}1.${Font_color_suffix} 安装 lnmp
+  ${Green_font_prefix}2.${Font_color_suffix} 安装 wordpress
+  ${Green_font_prefix}3.${Font_color_suffix} 安装 DirectoryLister
+ "
+	echo && stty erase '^H' && read -p "请输入数字 [1-3]：" num
+case "$num" in
+	1)
+	Install_lnmp
+	;;
+	2)
+	Install_wordpress
+	;;
+	3)
+	Install_DirectoryLister
+	;;
+	*)
+	echo -e "${Error} 请输入正确的数字 [1-3]"
+	;;
+esac
+}
+
+action=$1
+if [[ ! -z $action ]]; then
+	if [[ $action = "start" ]]; then
+		Start_bot
+	elif [[ $action = "stop" ]]; then
+		Stop_bot
+	elif [[ $action ="restart" ]]; then
+		Stop_bot
+		Start_bot
+else
+	menu
+fi
+
